@@ -24,118 +24,165 @@ import {
 	</head>
 	<body>
 		<header class="site-header" aria-label="Main navigation">
+			<a class="nav-word" href="#inquire">Inquire</a>
 			<a class="brand-mark" href="#top" aria-label="Nostalgia Stories home">
 				<img src="/assets/nostalgia-stories-logo.jpeg" alt="Nostalgia Stories logo" />
 			</a>
-			<nav>
-				<a href="#services">Services</a>
-				<a href="#process">Process</a>
-				<a href="#faq">FAQ</a>
-				<a href="#inquire">Inquire</a>
-			</nav>
+			<button class="nav-word menu-trigger" type="button" aria-controls="site-menu" aria-expanded="false" data-menu-trigger>
+				Menu
+			</button>
 		</header>
 
+		<div class="site-menu" id="site-menu" aria-hidden="true" data-site-menu>
+			<div class="menu-image">
+				<img src={portfolioPreview[1].image} alt="" />
+			</div>
+			<nav class="menu-panel" aria-label="Expanded navigation">
+				<button class="menu-close" type="button" data-menu-close>Close</button>
+				<p class="eyebrow">Explore</p>
+				<a href="#top" data-menu-link>Home</a>
+				<a href="#services" data-menu-link>Services</a>
+				<a href="#process" data-menu-link>Process</a>
+				<a href="#instagram" data-menu-link>Instagram</a>
+				<a href="#faq" data-menu-link>FAQ</a>
+				<a href="#inquire" data-menu-link>Inquire</a>
+				<div class="menu-social">
+					<a href={brand.instagramUrl}>Instagram</a>
+					<a href={brand.tiktokUrl}>TikTok</a>
+				</div>
+			</nav>
+		</div>
+
 		<main id="top">
-			<section class="hero-section section-shell">
-				<div class="hero-copy">
-					<p class="eyebrow">{hero.eyebrow}</p>
-					<h1>{hero.title}</h1>
-					<p class="hero-intro">{hero.intro}</p>
-					<div class="button-row" aria-label="Primary actions">
-						<a class="button button-primary" href="#inquire">{hero.primaryCta}</a>
-						<a class="button button-secondary" href="#services">{hero.secondaryCta}</a>
-					</div>
-				</div>
+			<section class="hero-canvas" aria-labelledby="hero-title">
+				<div class="hero-sticky">
+					<figure class="hero-float hero-float-one" data-float data-speed="-0.18" data-rotate="-7">
+						<img src={portfolioPreview[0].image} alt="" />
+					</figure>
+					<figure class="hero-float hero-float-two" data-float data-speed="0.28" data-rotate="5">
+						<img src={visuals.heroPhone} alt="" />
+					</figure>
+					<figure class="hero-float hero-float-three" data-float data-speed="-0.32" data-rotate="3">
+						<img src={portfolioPreview[2].image} alt="" />
+					</figure>
+					<figure class="hero-float hero-float-four" data-float data-speed="0.18" data-rotate="-4">
+						<img src={visuals.heroMini} alt="" />
+					</figure>
 
-				<div class="hero-media" aria-label="Nostalgia Stories brand preview">
-					<div class="phone-frame phone-frame-main">
-						<div class="phone-screen">
-							<span class="clip-label">4K vertical</span>
-							<img class="phone-photo" src={visuals.heroPhone} alt="" />
-							<p>Social-ready stories with a soft, cinematic eye.</p>
+					<div class="hero-center">
+						<p class="eyebrow">{hero.eyebrow}</p>
+						<img class="hero-logo" src="/assets/nostalgia-stories-logo.jpeg" alt="Nostalgia Stories" />
+						<h1 id="hero-title">{hero.title}</h1>
+						<p class="hero-intro">{hero.intro}</p>
+						<div class="button-row" aria-label="Primary actions">
+							<a class="button button-primary" href="#inquire">{hero.primaryCta}</a>
+							<a class="button button-secondary" href="#services">{hero.secondaryCta}</a>
 						</div>
 					</div>
-					<div class="phone-frame phone-frame-small" aria-hidden="true">
-						<div class="phone-screen">
-							<span class="clip-label">Drone filler</span>
-							<img class="phone-photo" src={visuals.heroMini} alt="" />
-							<p>Details, atmosphere, and motion between the big moments.</p>
-						</div>
+
+					<div class="hero-footer" aria-label="Event types">
+						<span>{brand.location}</span>
+						<span>{audiences.slice(0, 3).join(" / ")}</span>
 					</div>
 				</div>
 			</section>
 
-			<section class="marquee-band" aria-label="Event types">
-				<div>
+			<section class="audience-loop" aria-label="Event types">
+				<div class="audience-track">
 					{audiences.map((audience) => <span>{audience}</span>)}
+					{audiences.map((audience) => <span aria-hidden="true">{audience}</span>)}
 				</div>
 			</section>
 
-			<section class="intro-section section-shell">
-				<div>
-					<p class="eyebrow">The feeling first</p>
-					<h2>For the candid, cinematic, and social moments that happen between the planned ones.</h2>
-				</div>
-				<div class="intro-copy">
-					<p>
-						We document the movement of the day: quick laughs, table details, music shifts,
-						venue atmosphere, guest reactions, behind-the-scenes energy, and the quiet pieces
-						that make an event feel personal.
-					</p>
-					<ul class="check-list">
-						{highlights.map((highlight) => <li>{highlight}</li>)}
-					</ul>
-				</div>
-			</section>
-
-			<section class="portfolio-strip" aria-label="Portfolio preview">
-				{portfolioPreview.map((item) => (
-					<div class="reel-card" style={`--reel-image: url("${item.image}")`}>
-						<span>{item.label}</span>
+			<section class="brand-statement">
+				<img class="statement-image" src={portfolioPreview[3].image} alt="" />
+				<div class="statement-overlay"></div>
+				<div class="statement-inner section-shell">
+					<div class="statement-copy">
+						<p class="eyebrow">The feeling first</p>
+						<h2>For the candid, cinematic, and social moments that happen between the planned ones.</h2>
+						<p>
+							We document quick laughs, table details, music shifts, guest reactions, venue atmosphere,
+							behind-the-scenes energy, and the quiet pieces that make an event feel personal.
+						</p>
 					</div>
-				))}
+				</div>
 			</section>
 
-			<section id="services" class="services-section section-shell">
-				<div class="section-heading">
+			<section id="services" class="services-editorial section-shell">
+				<div class="section-kicker">
 					<p class="eyebrow">What we create</p>
 					<h2>Content made to post, share, and relive.</h2>
 				</div>
-				<div class="service-grid">
-					{services.map((service) => (
-						<article>
+				<ol class="service-ledger">
+					{services.map((service, index) => (
+						<li>
+							<span>{String(index + 1).padStart(2, "0")}</span>
 							<h3>{service.title}</h3>
 							<p>{service.description}</p>
-						</article>
+						</li>
 					))}
+				</ol>
+			</section>
+
+			<section class="work-wall" aria-label="Portfolio preview">
+				<div class="section-shell">
+					<div class="work-heading">
+						<p class="eyebrow">Seen in motion</p>
+						<h2>Atmosphere, details, people, movement.</h2>
+						<p>
+							A soft visual rhythm for celebrations, venues, launches, destination weekends, and
+							late-night energy.
+						</p>
+					</div>
+					<div class="work-composition">
+						{portfolioPreview.map((item, index) => (
+							<figure class={`work-frame work-frame-${index + 1}`}>
+								<img src={item.image} alt="" />
+								<figcaption>{item.label}</figcaption>
+							</figure>
+						))}
+					</div>
 				</div>
 			</section>
 
-			<section id="process" class="process-section section-shell">
-				<div class="section-heading">
-					<p class="eyebrow">How it works</p>
-					<h2>A calm process from first inquiry to final delivery.</h2>
-				</div>
-				<div class="process-grid">
-					{processSteps.map((item) => (
-						<article>
-							<span>{item.step}</span>
-							<h3>{item.title}</h3>
-							<p>{item.description}</p>
-						</article>
-					))}
+			<section id="process" class="process-scroll">
+				<div class="process-sticky section-shell">
+					<div class="process-media-stack" aria-hidden="true">
+						<img class="process-image process-image-one" src={portfolioPreview[1].image} alt="" />
+						<img class="process-image process-image-two" src={visuals.heroPhone} alt="" />
+						<img class="process-image process-image-three" src={instagramShowcase.items[2].image} alt="" />
+					</div>
+					<div class="process-copy">
+						<p class="eyebrow">How it works</p>
+						<h2>A calm process from first inquiry to final delivery.</h2>
+						<div class="process-steps">
+							{processSteps.map((item) => (
+								<article>
+									<span>{item.step}</span>
+									<div>
+										<h3>{item.title}</h3>
+										<p>{item.description}</p>
+									</div>
+								</article>
+							))}
+						</div>
+					</div>
 				</div>
 			</section>
 
-			<section class="testimonial-section section-shell">
+			<section class="memory-note section-shell">
 				<p class="eyebrow">Nostalgia note</p>
 				<blockquote>
-					"We focus on the moments people feel but do not always see - the movement, the
-					atmosphere, the details, and the story already unfolding in the room."
+					"We focus on the moments people feel but do not always see: the movement, the atmosphere,
+					the details, and the story already unfolding in the room."
 				</blockquote>
+				<ul class="highlight-line">
+					{highlights.map((highlight) => <li>{highlight}</li>)}
+				</ul>
 			</section>
 
-			<section class="instagram-section">
+			<section id="instagram" class="instagram-ribbon">
 				<div class="instagram-inner section-shell">
 					<div class="instagram-copy">
 						<p class="eyebrow">{instagramShowcase.eyebrow}</p>
@@ -143,9 +190,9 @@ import {
 						<p>{instagramShowcase.intro}</p>
 						<a class="button button-secondary" href={brand.instagramUrl}>{instagramShowcase.cta}</a>
 					</div>
-					<div class="instagram-grid" aria-label={`${brand.instagramHandle} preview`}>
+					<div class="instagram-rail" aria-label={`${brand.instagramHandle} preview`} tabindex="0">
 						{instagramShowcase.items.map((item) => (
-							<article class="instagram-card">
+							<article class="instagram-frame">
 								<img src={item.image} alt="" />
 								<div>
 									<span>{item.label}</span>
@@ -158,7 +205,7 @@ import {
 			</section>
 
 			<section id="faq" class="faq-section section-shell">
-				<div class="section-heading">
+				<div class="section-kicker">
 					<p class="eyebrow">Good to know</p>
 					<h2>Questions clients usually ask first.</h2>
 				</div>
@@ -272,6 +319,75 @@ import {
 			<p>Copyright 2026</p>
 		</footer>
 		<script>
+			const menu = document.querySelector("[data-site-menu]");
+			const menuTrigger = document.querySelector("[data-menu-trigger]");
+			const menuClose = document.querySelector("[data-menu-close]");
+			const menuLinks = document.querySelectorAll("[data-menu-link]");
+
+			const setMenu = (isOpen) => {
+				if (!(menu instanceof HTMLElement) || !(menuTrigger instanceof HTMLElement)) {
+					return;
+				}
+
+				menu.classList.toggle("is-open", isOpen);
+				menu.setAttribute("aria-hidden", String(!isOpen));
+				menuTrigger.setAttribute("aria-expanded", String(isOpen));
+				document.body.classList.toggle("menu-open", isOpen);
+			};
+
+			menuTrigger?.addEventListener("click", () => setMenu(true));
+			menuClose?.addEventListener("click", () => setMenu(false));
+			menuLinks.forEach((link) => link.addEventListener("click", () => setMenu(false)));
+
+			document.addEventListener("keydown", (event) => {
+				if (event.key === "Escape") {
+					setMenu(false);
+				}
+			});
+
+			const floatingItems = document.querySelectorAll("[data-float]");
+			const heroCanvas = document.querySelector(".hero-canvas");
+			const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+			let ticking = false;
+
+			const animateFloats = () => {
+				if (!(heroCanvas instanceof HTMLElement) || reducedMotion) {
+					return;
+				}
+
+				const rect = heroCanvas.getBoundingClientRect();
+				const travel = Math.max(heroCanvas.offsetHeight - window.innerHeight, 1);
+				const progress = Math.min(Math.max(-rect.top / travel, 0), 1);
+
+				floatingItems.forEach((item) => {
+					if (!(item instanceof HTMLElement)) {
+						return;
+					}
+
+					const speed = Number(item.dataset.speed || 0);
+					const rotate = Number(item.dataset.rotate || 0);
+					const y = progress * speed * 260;
+					const turn = rotate + progress * speed * 8;
+					item.style.transform = `translate3d(0, ${y}px, 0) rotate(${turn}deg)`;
+				});
+			};
+
+			const requestFloatFrame = () => {
+				if (ticking) {
+					return;
+				}
+
+				ticking = true;
+				window.requestAnimationFrame(() => {
+					animateFloats();
+					ticking = false;
+				});
+			};
+
+			animateFloats();
+			window.addEventListener("scroll", requestFloatFrame, { passive: true });
+			window.addEventListener("resize", requestFloatFrame);
+
 			const customSelect = document.querySelector("[data-custom-select]");
 
 			if (customSelect instanceof HTMLElement) {
@@ -314,12 +430,6 @@ import {
 					const target = event.target;
 
 					if (!(target instanceof Node) || !customSelect.contains(target)) {
-						closeSelect();
-					}
-				});
-
-				document.addEventListener("keydown", (event) => {
-					if (event.key === "Escape") {
 						closeSelect();
 					}
 				});
