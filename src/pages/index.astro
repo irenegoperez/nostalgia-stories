@@ -57,32 +57,30 @@ import {
 		<main id="top">
 			<section class="hero-canvas" aria-labelledby="hero-title">
 				<div class="hero-sticky">
-					<figure class="hero-float hero-float-one" data-float data-speed="-0.18" data-rotate="-7">
-						<img src={portfolioPreview[0].image} alt="" />
-					</figure>
-					<figure class="hero-float hero-float-two" data-float data-speed="0.28" data-rotate="5">
-						<img src={visuals.heroPhone} alt="" />
-					</figure>
-					<figure class="hero-float hero-float-three" data-float data-speed="-0.32" data-rotate="3">
-						<img src={portfolioPreview[2].image} alt="" />
-					</figure>
-					<figure class="hero-float hero-float-four" data-float data-speed="0.18" data-rotate="-4">
-						<img src={visuals.heroMini} alt="" />
-					</figure>
-
-					<div class="hero-center">
-						<img class="hero-logo" src="/assets/nostalgia-stories-logo.jpeg" alt="Nostalgia Stories" />
-						<h1 id="hero-title">{hero.title}</h1>
-						<p class="hero-intro">{hero.intro}</p>
-						<div class="button-row" aria-label="Primary actions">
-							<a class="button button-primary" href="#inquire">{hero.primaryCta}</a>
-							<a class="button button-secondary" href="#services">{hero.secondaryCta}</a>
+					<div class="hero-shell">
+						<div class="hero-center">
+							<img class="hero-logo" src="/assets/nostalgia-stories-logo.jpeg" alt="Nostalgia Stories" />
+							<p class="hero-script">Wedding content with a soft, social-first point of view.</p>
+							<h1 id="hero-title">{hero.title}</h1>
+							<p class="hero-intro">{hero.intro}</p>
+							<div class="button-row" aria-label="Primary actions">
+								<a class="button button-primary" href="#inquire">{hero.primaryCta}</a>
+								<a class="button button-secondary" href="#services">{hero.secondaryCta}</a>
+							</div>
 						</div>
-					</div>
 
-					<div class="hero-footer" aria-label="Event types">
-						<span>{brand.location}</span>
-						<span>{audiences.slice(0, 3).join(" / ")}</span>
+						<figure class="hero-portrait">
+							<img src={portfolioPreview[0].image} alt="" />
+							<figcaption>
+								<span>01</span>
+								<span>Soft wedding stories</span>
+							</figcaption>
+						</figure>
+
+						<div class="hero-footer" aria-label="Event types">
+							<span>{brand.location}</span>
+							<span>{audiences.slice(0, 3).join(" / ")}</span>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -355,48 +353,7 @@ import {
 				}
 			});
 
-			const floatingItems = document.querySelectorAll("[data-float]");
-			const heroCanvas = document.querySelector(".hero-canvas");
 			const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-			let ticking = false;
-
-			const animateFloats = () => {
-				if (!(heroCanvas instanceof HTMLElement) || reducedMotion) {
-					return;
-				}
-
-				const rect = heroCanvas.getBoundingClientRect();
-				const travel = Math.max(heroCanvas.offsetHeight - window.innerHeight, 1);
-				const progress = Math.min(Math.max(-rect.top / travel, 0), 1);
-
-				floatingItems.forEach((item) => {
-					if (!(item instanceof HTMLElement)) {
-						return;
-					}
-
-					const speed = Number(item.dataset.speed || 0);
-					const rotate = Number(item.dataset.rotate || 0);
-					const y = progress * speed * 260;
-					const turn = rotate + progress * speed * 8;
-					item.style.transform = `translate3d(0, ${y}px, 0) rotate(${turn}deg)`;
-				});
-			};
-
-			const requestFloatFrame = () => {
-				if (ticking) {
-					return;
-				}
-
-				ticking = true;
-				window.requestAnimationFrame(() => {
-					animateFloats();
-					ticking = false;
-				});
-			};
-
-			animateFloats();
-			window.addEventListener("scroll", requestFloatFrame, { passive: true });
-			window.addEventListener("resize", requestFloatFrame);
 
 			const galleryViewport = document.querySelector("[data-editorial-gallery]");
 			const galleryPrev = document.querySelector("[data-gallery-prev]");
