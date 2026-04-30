@@ -9,7 +9,6 @@ export const brand = {
 };
 
 export const hero = {
-	eyebrow: "iPhone video + drone filler shoots",
 	title: "Your event, remembered in motion.",
 	intro:
 		"Nostalgia Stories creates vertical 4K event content for private celebrations, destination weekends, brand moments, restaurants, DJs, and experiences worth reliving.",
