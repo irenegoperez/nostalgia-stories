@@ -63,6 +63,65 @@ export const portfolioPreview = [
 	},
 ];
 
+export const editorialGallery = [
+	{
+		number: "01",
+		label: "Ceremony",
+		title: "Blush aisle details",
+		image:
+			"https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80",
+	},
+	{
+		number: "02",
+		label: "Florals",
+		title: "Soft petal textures",
+		image:
+			"https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=900&q=80",
+	},
+	{
+		number: "03",
+		label: "Reception",
+		title: "Candlelit tables",
+		image:
+			"https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=80",
+	},
+	{
+		number: "04",
+		label: "Bride",
+		title: "Morning light",
+		image:
+			"https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80",
+	},
+	{
+		number: "05",
+		label: "Toast",
+		title: "Champagne hour",
+		image:
+			"https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=80",
+	},
+	{
+		number: "06",
+		label: "Vows",
+		title: "Destination romance",
+		image:
+			"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80",
+	},
+	{
+		number: "07",
+		label: "Details",
+		title: "The pretty closeups",
+		image:
+			"https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80",
+	},
+	{
+		number: "08",
+		label: "Party",
+		title: "After-dinner glow",
+		image:
+			"https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=80",
+	},
+];
+
 export const services = [
 	{
 		title: "Event Content",

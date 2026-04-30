@@ -4,6 +4,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import {
 	audiences,
 	brand,
+	editorialGallery,
 	eventTypes,
 	faqs,
 	hero,
@@ -125,21 +126,31 @@ import {
 				</ol>
 			</section>
 
-			<section class="work-wall" aria-label="Portfolio preview">
-				<div class="section-shell">
-					<div class="work-heading">
+			<section class="gallery-showcase" aria-labelledby="gallery-title">
+				<div class="gallery-intro section-shell">
+					<div>
 						<p class="eyebrow">Seen in motion</p>
-						<h2>Atmosphere, details, people, movement.</h2>
-						<p>
-							A soft visual rhythm for celebrations, venues, launches, destination weekends, and
-							late-night energy.
-						</p>
+						<h2 id="gallery-title">A moving lookbook of the soft, pretty moments we chase.</h2>
 					</div>
-					<div class="work-composition">
-						{portfolioPreview.map((item, index) => (
-							<figure class={`work-frame work-frame-${index + 1}`}>
+					<p>
+						Wedding mornings, florals, tablescapes, champagne, guest reactions, and the tiny details that
+						make the final edit feel feminine, warm, and alive.
+					</p>
+					<div class="gallery-actions" aria-label="Gallery controls">
+						<button type="button" aria-label="Previous gallery images" data-gallery-prev>&lsaquo;</button>
+						<button type="button" aria-label="Next gallery images" data-gallery-next>&rsaquo;</button>
+					</div>
+				</div>
+				<div class="editorial-gallery" aria-label="Wedding content preview gallery" tabindex="0" data-editorial-gallery>
+					<div class="editorial-gallery-track">
+						{[...editorialGallery, ...editorialGallery].map((item, index) => (
+							<figure class="gallery-card" aria-hidden={index >= editorialGallery.length ? "true" : "false"}>
 								<img src={item.image} alt="" />
-								<figcaption>{item.label}</figcaption>
+								<figcaption>
+									<span>{item.number}</span>
+									<strong>{item.title}</strong>
+									<small>{item.label}</small>
+								</figcaption>
 							</figure>
 						))}
 					</div>
@@ -387,6 +398,66 @@ import {
 			animateFloats();
 			window.addEventListener("scroll", requestFloatFrame, { passive: true });
 			window.addEventListener("resize", requestFloatFrame);
+
+			const galleryViewport = document.querySelector("[data-editorial-gallery]");
+			const galleryPrev = document.querySelector("[data-gallery-prev]");
+			const galleryNext = document.querySelector("[data-gallery-next]");
+
+			if (galleryViewport instanceof HTMLElement) {
+				let galleryPaused = false;
+				let galleryFrame = 0;
+
+				const resetGalleryLoop = () => {
+					const midpoint = galleryViewport.scrollWidth / 2;
+
+					if (midpoint > 0 && galleryViewport.scrollLeft >= midpoint) {
+						galleryViewport.scrollLeft -= midpoint;
+					}
+				};
+
+				const moveGallery = () => {
+					if (!galleryPaused && !reducedMotion) {
+						galleryViewport.scrollLeft += 0.42;
+						resetGalleryLoop();
+					}
+
+					galleryFrame = window.requestAnimationFrame(moveGallery);
+				};
+
+				const scrollGallery = (direction) => {
+					galleryPaused = true;
+					galleryViewport.scrollBy({
+						left: direction * Math.min(galleryViewport.clientWidth * 0.78, 560),
+						behavior: reducedMotion ? "auto" : "smooth",
+					});
+					window.setTimeout(() => {
+						galleryPaused = false;
+					}, 1200);
+				};
+
+				galleryViewport.addEventListener("mouseenter", () => {
+					galleryPaused = true;
+				});
+
+				galleryViewport.addEventListener("mouseleave", () => {
+					galleryPaused = false;
+				});
+
+				galleryViewport.addEventListener("focusin", () => {
+					galleryPaused = true;
+				});
+
+				galleryViewport.addEventListener("focusout", () => {
+					galleryPaused = false;
+				});
+
+				galleryViewport.addEventListener("scroll", resetGalleryLoop, { passive: true });
+				galleryPrev?.addEventListener("click", () => scrollGallery(-1));
+				galleryNext?.addEventListener("click", () => scrollGallery(1));
+				galleryFrame = window.requestAnimationFrame(moveGallery);
+
+				window.addEventListener("beforeunload", () => window.cancelAnimationFrame(galleryFrame));
+			}
 
 			const customSelect = document.querySelector("[data-custom-select]");
 
