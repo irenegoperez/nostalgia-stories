@@ -35,31 +35,31 @@ export const audiences = [
 
 export const visuals = {
 	heroPhone:
-		"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80",
+		"https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80",
 	heroMini:
-		"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+		"https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80",
 };
 
 export const portfolioPreview = [
 	{
-		label: "Ceremony Details",
+		label: "Blush Ceremony",
 		image:
-			"https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80",
+			"https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80",
 	},
 	{
-		label: "Dinner Atmosphere",
+		label: "Garden Tablescape",
 		image:
-			"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+			"https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=80",
 	},
 	{
-		label: "Dance Floor Energy",
+		label: "Champagne Hour",
 		image:
-			"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
+			"https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=80",
 	},
 	{
-		label: "Destination Moments",
+		label: "Destination Romance",
 		image:
-			"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+			"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80",
 	},
 ];
 
@@ -107,28 +107,28 @@ export const instagramShowcase = {
 	cta: "Follow on Instagram",
 	items: [
 		{
-			label: "Reels",
-			title: "Ready-to-post edits",
+			label: "Bride",
+			title: "Soft morning moments",
 			image:
 				"https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80",
 		},
 		{
-			label: "Details",
-			title: "Tables, textures, florals",
+			label: "Florals",
+			title: "Pink textures and blooms",
 			image:
 				"https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=700&q=80",
 		},
 		{
-			label: "Energy",
-			title: "The room in motion",
+			label: "Reception",
+			title: "Champagne and candlelight",
 			image:
-				"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=700&q=80",
+				"https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=700&q=80",
 		},
 		{
-			label: "Venue",
-			title: "Atmosphere clips",
+			label: "Details",
+			title: "Ceremony pieces up close",
 			image:
-				"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80",
+				"https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80",
 		},
 	],
 };
