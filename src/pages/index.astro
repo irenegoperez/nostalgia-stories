@@ -7,7 +7,7 @@ import {
 	faqs,
 	hero,
 	highlights,
-	packages,
+	inquiry,
 	processSteps,
 	services,
 } from "../data/siteContent";
@@ -25,8 +25,8 @@ import {
 			</a>
 			<nav>
 				<a href="#services">Services</a>
-				<a href="#packages">Packages</a>
 				<a href="#process">Process</a>
+				<a href="#faq">FAQ</a>
 				<a href="#inquire">Inquire</a>
 			</nav>
 		</header>
@@ -114,28 +114,6 @@ import {
 				</div>
 			</section>
 
-			<section id="packages" class="packages-section section-shell">
-				<div class="section-heading">
-					<p class="eyebrow">Collections</p>
-					<h2>Start with a package, then customize the coverage around the event.</h2>
-				</div>
-				<div class="package-grid">
-					{packages.map((item) => (
-						<article class:list={["package-card", { featured: item.featured }]}>
-							<div class="package-topline">
-								<h3>{item.name}</h3>
-								<span>{item.coverage}</span>
-							</div>
-							<p>{item.bestFor}</p>
-							<ul>
-								{item.includes.map((include) => <li>{include}</li>)}
-							</ul>
-							<a href="#inquire">Ask for pricing</a>
-						</article>
-					))}
-				</div>
-			</section>
-
 			<section id="process" class="process-section section-shell">
 				<div class="section-heading">
 					<p class="eyebrow">How it works</p>
@@ -160,7 +138,7 @@ import {
 				</blockquote>
 			</section>
 
-			<section class="faq-section section-shell">
+			<section id="faq" class="faq-section section-shell">
 				<div class="section-heading">
 					<p class="eyebrow">Good to know</p>
 					<h2>Questions clients usually ask first.</h2>
@@ -176,21 +154,92 @@ import {
 			</section>
 
 			<section id="inquire" class="inquiry-section section-shell">
-				<div>
-					<p class="eyebrow">{brand.location}</p>
-					<h2>Ready to save the feeling of the day?</h2>
-					<p>
-						Send the event date, location, event type, and the content style you have in mind.
-						We will help shape the right coverage from there.
-					</p>
+				<div class="inquiry-copy">
+					<p class="eyebrow">{inquiry.eyebrow}</p>
+					<h2>{inquiry.title}</h2>
+					<p>{inquiry.intro}</p>
+					<p>{inquiry.responseTime}</p>
 				</div>
-				<div class="contact-panel">
-					<a class="button button-primary" href={`mailto:${brand.email}`}>Email {brand.email}</a>
-					<div class="social-links">
-						<a href={brand.instagramUrl}>Instagram</a>
-						<a href={brand.tiktokUrl}>TikTok</a>
+
+				<form class="inquiry-form" data-inquiry-form data-inquiry-email={brand.email}>
+					<div class="form-grid">
+						<label>
+							<span>Your name</span>
+							<input name="name" type="text" autocomplete="name" required />
+						</label>
+						<label>
+							<span>Email</span>
+							<input name="email" type="email" autocomplete="email" required />
+						</label>
+						<label>
+							<span>Phone or WhatsApp</span>
+							<input name="phone" type="tel" autocomplete="tel" />
+						</label>
+						<label>
+							<span>Instagram or TikTok handle</span>
+							<input name="social" type="text" placeholder="@nostalgiastories" />
+						</label>
+						<label>
+							<span>Event type</span>
+							<select name="eventType" required>
+								<option value="">Select one</option>
+								<option>Private event</option>
+								<option>Wedding</option>
+								<option>Quinceanera</option>
+								<option>DJ event</option>
+								<option>Restaurant or venue</option>
+								<option>Brand or social event</option>
+								<option>Other</option>
+							</select>
+						</label>
+						<label>
+							<span>Event date</span>
+							<input name="eventDate" type="date" />
+						</label>
+						<label class="field-wide">
+							<span>Location or venue</span>
+							<input name="location" type="text" placeholder="City, venue, or destination" />
+						</label>
 					</div>
-				</div>
+
+					<fieldset>
+						<legend>What content are you looking for?</legend>
+						<label><input name="contentNeeds" type="checkbox" value="Vertical 4K iPhone coverage" /> Vertical 4K iPhone coverage</label>
+						<label><input name="contentNeeds" type="checkbox" value="Ready-to-post reels" /> Ready-to-post reels</label>
+						<label><input name="contentNeeds" type="checkbox" value="Raw clips" /> Raw clips</label>
+						<label><input name="contentNeeds" type="checkbox" value="Drone filler shots" /> Drone filler shots</label>
+						<label><input name="contentNeeds" type="checkbox" value="Restaurant or brand content" /> Restaurant or brand content</label>
+						<label><input name="contentNeeds" type="checkbox" value="Not sure yet" /> Not sure yet</label>
+					</fieldset>
+
+					<div class="form-grid">
+						<label>
+							<span>Estimated coverage</span>
+							<select name="coverage">
+								<option value="">Select one</option>
+								<option>2-4 hours</option>
+								<option>5-6 hours</option>
+								<option>Full event day</option>
+								<option>Multi-day event</option>
+								<option>Not sure yet</option>
+							</select>
+						</label>
+						<label>
+							<span>How did you hear about us?</span>
+							<input name="referral" type="text" />
+						</label>
+						<label class="field-wide">
+							<span>Tell us about the vision</span>
+							<textarea name="vision" rows="6" placeholder="Share the mood, must-capture moments, music direction, timeline notes, or anything you want the content to feel like."></textarea>
+						</label>
+						<label class="field-wide">
+							<span>Inspiration links</span>
+							<input name="inspiration" type="text" placeholder="Instagram, TikTok, Pinterest, or website links" />
+						</label>
+					</div>
+
+					<button class="button button-primary" type="submit">Send inquiry</button>
+				</form>
 			</section>
 		</main>
 
@@ -198,5 +247,42 @@ import {
 			<p>{brand.name} - {brand.tagline}</p>
 			<p>Copyright 2026</p>
 		</footer>
+		<script>
+			const inquiryForm = document.querySelector("[data-inquiry-form]");
+
+			if (inquiryForm instanceof HTMLFormElement) {
+				inquiryForm.addEventListener("submit", (event) => {
+					event.preventDefault();
+
+					const data = new FormData(inquiryForm);
+					const contentNeeds = data.getAll("contentNeeds").join(", ") || "Not selected";
+					const recipient = inquiryForm.dataset.inquiryEmail || "hello@nostalgiastories.co";
+					const lines = [
+						"New Nostalgia Stories inquiry",
+						"",
+						`Name: ${data.get("name") || ""}`,
+						`Email: ${data.get("email") || ""}`,
+						`Phone or WhatsApp: ${data.get("phone") || ""}`,
+						`Instagram or TikTok: ${data.get("social") || ""}`,
+						`Event type: ${data.get("eventType") || ""}`,
+						`Event date: ${data.get("eventDate") || ""}`,
+						`Location or venue: ${data.get("location") || ""}`,
+						`Content needs: ${contentNeeds}`,
+						`Estimated coverage: ${data.get("coverage") || ""}`,
+						`Referral: ${data.get("referral") || ""}`,
+						"",
+						"Vision:",
+						`${data.get("vision") || ""}`,
+						"",
+						"Inspiration links:",
+						`${data.get("inspiration") || ""}`,
+					];
+
+					const subject = encodeURIComponent("Nostalgia Stories inquiry");
+					const body = encodeURIComponent(lines.join("\n"));
+					window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+				});
+			}
+		</script>
 	</body>
 </html>

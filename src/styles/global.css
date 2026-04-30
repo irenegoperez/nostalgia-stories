@@ -374,7 +374,6 @@ h3 {
 }
 
 .services-section,
-.packages-section,
 .process-section,
 .faq-section {
 	padding: 110px 0 0;
@@ -395,10 +394,9 @@ h3 {
 }
 
 .service-grid article,
-.package-card,
 .process-grid article,
 details,
-.contact-panel {
+.inquiry-form {
 	border: 1px solid var(--line);
 	border-radius: 8px;
 	background: rgba(255, 250, 246, 0.7);
@@ -411,8 +409,6 @@ details,
 }
 
 .service-grid p,
-.package-card p,
-.package-card li,
 .process-grid p,
 details p {
 	color: var(--muted);
@@ -420,67 +416,6 @@ details p {
 
 .service-grid p {
 	margin-top: 16px;
-}
-
-.package-grid {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 14px;
-}
-
-.package-card {
-	display: flex;
-	min-height: 500px;
-	flex-direction: column;
-	padding: 28px;
-}
-
-.package-card.featured {
-	background: #fff7f4;
-	border-color: rgba(207, 180, 183, 0.7);
-}
-
-.package-topline {
-	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
-	gap: 18px;
-	margin-bottom: 20px;
-}
-
-.package-topline span {
-	color: var(--olive);
-	font-weight: 700;
-	white-space: nowrap;
-}
-
-.package-card ul {
-	display: grid;
-	gap: 10px;
-	margin: 24px 0 28px;
-	list-style: none;
-}
-
-.package-card li {
-	position: relative;
-	padding-left: 22px;
-}
-
-.package-card li::before {
-	position: absolute;
-	top: 11px;
-	left: 0;
-	width: 7px;
-	height: 7px;
-	border-radius: 50%;
-	background: var(--matcha);
-	content: "";
-}
-
-.package-card a {
-	margin-top: auto;
-	color: var(--matcha-deep);
-	font-weight: 700;
 }
 
 .process-grid {
@@ -539,14 +474,110 @@ details p {
 }
 
 .inquiry-section {
-	align-items: center;
-	padding-bottom: 110px;
+	align-items: start;
+	padding: 110px 0;
 }
 
-.contact-panel {
+.inquiry-copy {
+	position: sticky;
+	top: 120px;
+}
+
+.inquiry-copy p + p {
+	margin-top: 18px;
+}
+
+.inquiry-form {
 	display: grid;
-	gap: 20px;
-	padding: 28px;
+	gap: 28px;
+	padding: 32px;
+}
+
+.form-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 18px;
+}
+
+.field-wide {
+	grid-column: 1 / -1;
+}
+
+.inquiry-form label,
+.inquiry-form fieldset {
+	display: grid;
+	gap: 8px;
+	margin: 0;
+	color: var(--matcha-deep);
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+	width: 100%;
+	border: 1px solid rgba(111, 121, 84, 0.28);
+	border-radius: 8px;
+	background: rgba(249, 243, 238, 0.72);
+	color: var(--ink);
+	padding: 13px 14px;
+	outline: none;
+}
+
+.inquiry-form input:focus,
+.inquiry-form select:focus,
+.inquiry-form textarea:focus {
+	border-color: var(--matcha);
+	box-shadow: 0 0 0 3px rgba(111, 121, 84, 0.12);
+}
+
+.inquiry-form textarea {
+	resize: vertical;
+}
+
+.inquiry-form fieldset {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	border: 1px solid rgba(111, 121, 84, 0.2);
+	border-radius: 8px;
+	padding: 20px;
+}
+
+.inquiry-form legend {
+	grid-column: 1 / -1;
+	padding: 0 8px;
+	color: var(--matcha);
+	font-family: var(--serif);
+	font-size: 26px;
+	font-weight: 400;
+}
+
+.inquiry-form fieldset label {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	color: var(--muted);
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.inquiry-form input[type="checkbox"] {
+	width: 17px;
+	min-width: 17px;
+	height: 17px;
+	margin-top: 4px;
+	accent-color: var(--matcha);
+}
+
+.inquiry-form button {
+	justify-self: start;
+	min-width: 180px;
+	cursor: pointer;
+}
+
+.inquiry-form button:hover {
+	background: var(--matcha-deep);
+	border-color: var(--matcha-deep);
 }
 
 .social-links {
@@ -596,7 +627,6 @@ details p {
 	}
 
 	.service-grid,
-	.package-grid,
 	.process-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
@@ -678,7 +708,6 @@ details p {
 
 	.intro-section,
 	.services-section,
-	.packages-section,
 	.process-section,
 	.faq-section {
 		padding-top: 72px;
@@ -690,9 +719,10 @@ details p {
 	}
 
 	.service-grid,
-	.package-grid,
 	.process-grid,
-	.portfolio-strip {
+	.portfolio-strip,
+	.form-grid,
+	.inquiry-form fieldset {
 		grid-template-columns: 1fr;
 	}
 
@@ -700,8 +730,16 @@ details p {
 		min-height: 280px;
 	}
 
-	.package-card {
-		min-height: auto;
+	.inquiry-copy {
+		position: static;
+	}
+
+	.inquiry-form {
+		padding: 22px;
+	}
+
+	.inquiry-form button {
+		width: 100%;
 	}
 
 	.section-heading {

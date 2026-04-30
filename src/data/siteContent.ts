@@ -50,42 +50,13 @@ export const services = [
 	},
 ];
 
-export const packages = [
-	{
-		name: "Moment",
-		coverage: "2 hours",
-		bestFor: "Intimate dinners, DJ sets, small private events, and restaurant content.",
-		includes: [
-			"Vertical iPhone coverage",
-			"One ready-to-post short-form edit",
-			"Raw clips organized for download",
-			"Delivery timeline confirmed before booking",
-		],
-	},
-	{
-		name: "Story",
-		coverage: "5 hours",
-		bestFor: "Celebrations with a timeline, guest moments, venue details, and multiple scenes.",
-		includes: [
-			"Vertical 4K iPhone coverage",
-			"Two ready-to-post short-form edits",
-			"Drone filler clips when location allows",
-			"Raw content gallery for easy sharing",
-		],
-		featured: true,
-	},
-	{
-		name: "Archive",
-		coverage: "8 hours",
-		bestFor: "Full event days, destination weekends, brand activations, and large celebrations.",
-		includes: [
-			"Full-day content coverage",
-			"Three ready-to-post short-form edits",
-			"Drone filler clips when location allows",
-			"Priority edit queue and organized raw gallery",
-		],
-	},
-];
+export const inquiry = {
+	eyebrow: "Inquire",
+	title: "Tell us what you are dreaming up.",
+	intro:
+		"Share the details you already know and the feeling you want the content to carry. Once your inquiry is received, we will review the vision and send the best-fit coverage options privately.",
+	responseTime: "You can expect a response within 48 hours.",
+};
 
 export const processSteps = [
 	{
@@ -131,8 +102,8 @@ export const faqs = [
 			"No. This complements your photographer or videographer by capturing fast, candid, phone-first content made for social posting and real-time memory sharing.",
 	},
 	{
-		question: "Can packages be customized?",
+		question: "How do I receive coverage information?",
 		answer:
-			"Yes. Coverage hours, number of edits, drone needs, and delivery timing can be adjusted around the event.",
+			"After you send an inquiry, we review the event details and share coverage recommendations privately based on the date, location, timeline, and content needs.",
 	},
 ];
