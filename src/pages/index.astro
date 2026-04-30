@@ -1,50 +1,202 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import {
+	audiences,
+	brand,
+	faqs,
+	hero,
+	highlights,
+	packages,
+	processSteps,
+	services,
+} from "../data/siteContent";
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image="/assets/nostalgia-stories-logo.jpeg" />
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<header class="site-header" aria-label="Main navigation">
+			<a class="brand-mark" href="#top" aria-label="Nostalgia Stories home">
+				<img src="/assets/nostalgia-stories-logo.jpeg" alt="Nostalgia Stories logo" />
+			</a>
+			<nav>
+				<a href="#services">Services</a>
+				<a href="#packages">Packages</a>
+				<a href="#process">Process</a>
+				<a href="#inquire">Inquire</a>
+			</nav>
+		</header>
+
+		<main id="top">
+			<section class="hero-section section-shell">
+				<div class="hero-copy">
+					<p class="eyebrow">{hero.eyebrow}</p>
+					<h1>{hero.title}</h1>
+					<p class="hero-intro">{hero.intro}</p>
+					<div class="button-row" aria-label="Primary actions">
+						<a class="button button-primary" href="#inquire">{hero.primaryCta}</a>
+						<a class="button button-secondary" href="#services">{hero.secondaryCta}</a>
+					</div>
+				</div>
+
+				<div class="hero-media" aria-label="Nostalgia Stories brand preview">
+					<div class="phone-frame phone-frame-main">
+						<div class="phone-screen">
+							<span class="clip-label">4K vertical</span>
+							<img src="/assets/nostalgia-stories-logo.jpeg" alt="" />
+							<p>Private events, celebrations, venues, and brand moments.</p>
+						</div>
+					</div>
+					<div class="phone-frame phone-frame-small" aria-hidden="true">
+						<div class="phone-screen">
+							<span class="clip-label">Drone filler</span>
+							<div class="soft-scene"></div>
+							<p>Cinematic openers and atmosphere clips.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="marquee-band" aria-label="Event types">
+				<div>
+					{audiences.map((audience) => <span>{audience}</span>)}
+				</div>
+			</section>
+
+			<section class="intro-section section-shell">
+				<div>
+					<p class="eyebrow">The feeling first</p>
+					<h2>For the candid, cinematic, and social moments that happen between the planned ones.</h2>
+				</div>
+				<div class="intro-copy">
+					<p>
+						We document the movement of the day: quick laughs, table details, music shifts,
+						venue atmosphere, guest reactions, behind-the-scenes energy, and the quiet pieces
+						that make an event feel personal.
+					</p>
+					<ul class="check-list">
+						{highlights.map((highlight) => <li>{highlight}</li>)}
+					</ul>
+				</div>
+			</section>
+
+			<section class="portfolio-strip" aria-label="Portfolio preview">
+				<div class="reel-card reel-card-1">
+					<span>Getting ready</span>
+				</div>
+				<div class="reel-card reel-card-2">
+					<span>Venue details</span>
+				</div>
+				<div class="reel-card reel-card-3">
+					<span>Dance floor</span>
+				</div>
+				<div class="reel-card reel-card-4">
+					<span>Drone openers</span>
+				</div>
+			</section>
+
+			<section id="services" class="services-section section-shell">
+				<div class="section-heading">
+					<p class="eyebrow">What we create</p>
+					<h2>Content made to post, share, and relive.</h2>
+				</div>
+				<div class="service-grid">
+					{services.map((service) => (
+						<article>
+							<h3>{service.title}</h3>
+							<p>{service.description}</p>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section id="packages" class="packages-section section-shell">
+				<div class="section-heading">
+					<p class="eyebrow">Collections</p>
+					<h2>Start with a package, then customize the coverage around the event.</h2>
+				</div>
+				<div class="package-grid">
+					{packages.map((item) => (
+						<article class:list={["package-card", { featured: item.featured }]}>
+							<div class="package-topline">
+								<h3>{item.name}</h3>
+								<span>{item.coverage}</span>
+							</div>
+							<p>{item.bestFor}</p>
+							<ul>
+								{item.includes.map((include) => <li>{include}</li>)}
+							</ul>
+							<a href="#inquire">Ask for pricing</a>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section id="process" class="process-section section-shell">
+				<div class="section-heading">
+					<p class="eyebrow">How it works</p>
+					<h2>A calm process from first inquiry to final delivery.</h2>
+				</div>
+				<div class="process-grid">
+					{processSteps.map((item) => (
+						<article>
+							<span>{item.step}</span>
+							<h3>{item.title}</h3>
+							<p>{item.description}</p>
+						</article>
+					))}
+				</div>
+			</section>
+
+			<section class="testimonial-section section-shell">
+				<p class="eyebrow">Nostalgia note</p>
+				<blockquote>
+					"We focus on the moments people feel but do not always see - the movement, the
+					atmosphere, the details, and the story already unfolding in the room."
+				</blockquote>
+			</section>
+
+			<section class="faq-section section-shell">
+				<div class="section-heading">
+					<p class="eyebrow">Good to know</p>
+					<h2>Questions clients usually ask first.</h2>
+				</div>
+				<div class="faq-list">
+					{faqs.map((faq) => (
+						<details>
+							<summary>{faq.question}</summary>
+							<p>{faq.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<section id="inquire" class="inquiry-section section-shell">
+				<div>
+					<p class="eyebrow">{brand.location}</p>
+					<h2>Ready to save the feeling of the day?</h2>
+					<p>
+						Send the event date, location, event type, and the content style you have in mind.
+						We will help shape the right coverage from there.
+					</p>
+				</div>
+				<div class="contact-panel">
+					<a class="button button-primary" href={`mailto:${brand.email}`}>Email {brand.email}</a>
+					<div class="social-links">
+						<a href={brand.instagramUrl}>Instagram</a>
+						<a href={brand.tiktokUrl}>TikTok</a>
+					</div>
+				</div>
+			</section>
 		</main>
-		<Footer />
+
+		<footer class="site-footer">
+			<p>{brand.name} - {brand.tagline}</p>
+			<p>Copyright 2026</p>
+		</footer>
 	</body>
 </html>
