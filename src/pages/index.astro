@@ -4,7 +4,6 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import {
 	audiences,
 	brand,
-	editorialGallery,
 	eventTypes,
 	faqs,
 	hero,
@@ -55,31 +54,30 @@ import {
 		</div>
 
 		<main id="top">
-			<section class="hero-canvas" aria-labelledby="hero-title">
-				<div class="hero-sticky">
-					<div class="hero-shell">
-						<div class="hero-center">
-							<img class="hero-logo" src="/assets/nostalgia-stories-logo.jpeg" alt="Nostalgia Stories" />
-							<p class="hero-script">Wedding content with a soft, social-first point of view.</p>
-							<h1 id="hero-title">{hero.title}</h1>
-							<p class="hero-intro">{hero.intro}</p>
-							<div class="button-row" aria-label="Primary actions">
-								<a class="button button-primary" href="#inquire">{hero.primaryCta}</a>
-								<a class="button button-secondary" href="#services">{hero.secondaryCta}</a>
-							</div>
+			<section class="hero-section section-shell" aria-labelledby="hero-title">
+				<div class="hero-copy">
+					<p class="eyebrow">{brand.name} / {brand.tagline}</p>
+					<h1 id="hero-title">{hero.title}</h1>
+					<p class="hero-intro">{hero.intro}</p>
+					<div class="button-row" aria-label="Primary actions">
+						<a class="button button-primary" href="#inquire">{hero.primaryCta}</a>
+						<a class="button button-secondary" href="#services">{hero.secondaryCta}</a>
+					</div>
+				</div>
+
+				<div class="hero-media" aria-label="Nostalgia Stories vertical content preview">
+					<div class="phone-frame phone-frame-main">
+						<div class="phone-screen">
+							<span class="clip-label">4K vertical</span>
+							<img class="phone-photo" src={visuals.heroPhone} alt="" />
+							<p>Social-ready stories with a soft, cinematic eye.</p>
 						</div>
-
-						<figure class="hero-portrait">
-							<img src={portfolioPreview[0].image} alt="" />
-							<figcaption>
-								<span>01</span>
-								<span>Soft wedding stories</span>
-							</figcaption>
-						</figure>
-
-						<div class="hero-footer" aria-label="Event types">
-							<span>{brand.location}</span>
-							<span>{audiences.slice(0, 3).join(" / ")}</span>
+					</div>
+					<div class="phone-frame phone-frame-small" aria-hidden="true">
+						<div class="phone-screen">
+							<span class="clip-label">Event details</span>
+							<img class="phone-photo" src={visuals.heroMini} alt="" />
+							<p>Pretty details, atmosphere, and motion between the big moments.</p>
 						</div>
 					</div>
 				</div>
@@ -121,37 +119,6 @@ import {
 						</li>
 					))}
 				</ol>
-			</section>
-
-			<section class="gallery-showcase" aria-labelledby="gallery-title">
-				<div class="gallery-intro section-shell">
-					<div>
-						<p class="eyebrow">Seen in motion</p>
-						<h2 id="gallery-title">A moving lookbook of the soft, pretty moments we chase.</h2>
-					</div>
-					<p>
-						Wedding mornings, florals, tablescapes, champagne, guest reactions, and the tiny details that
-						make the final edit feel feminine, warm, and alive.
-					</p>
-					<div class="gallery-actions" aria-label="Gallery controls">
-						<button type="button" aria-label="Previous gallery images" data-gallery-prev>&lsaquo;</button>
-						<button type="button" aria-label="Next gallery images" data-gallery-next>&rsaquo;</button>
-					</div>
-				</div>
-				<div class="editorial-gallery" aria-label="Wedding content preview gallery" tabindex="0" data-editorial-gallery>
-					<div class="editorial-gallery-track">
-						{[...editorialGallery, ...editorialGallery].map((item, index) => (
-							<figure class="gallery-card" aria-hidden={index >= editorialGallery.length ? "true" : "false"}>
-								<img src={item.image} alt="" />
-								<figcaption>
-									<span>{item.number}</span>
-									<strong>{item.title}</strong>
-									<small>{item.label}</small>
-								</figcaption>
-							</figure>
-						))}
-					</div>
-				</div>
 			</section>
 
 			<section id="process" class="process-scroll">
@@ -352,68 +319,6 @@ import {
 					setMenu(false);
 				}
 			});
-
-			const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-			const galleryViewport = document.querySelector("[data-editorial-gallery]");
-			const galleryPrev = document.querySelector("[data-gallery-prev]");
-			const galleryNext = document.querySelector("[data-gallery-next]");
-
-			if (galleryViewport instanceof HTMLElement) {
-				let galleryPaused = false;
-				let galleryFrame = 0;
-
-				const resetGalleryLoop = () => {
-					const midpoint = galleryViewport.scrollWidth / 2;
-
-					if (midpoint > 0 && galleryViewport.scrollLeft >= midpoint) {
-						galleryViewport.scrollLeft -= midpoint;
-					}
-				};
-
-				const moveGallery = () => {
-					if (!galleryPaused && !reducedMotion) {
-						galleryViewport.scrollLeft += 0.42;
-						resetGalleryLoop();
-					}
-
-					galleryFrame = window.requestAnimationFrame(moveGallery);
-				};
-
-				const scrollGallery = (direction) => {
-					galleryPaused = true;
-					galleryViewport.scrollBy({
-						left: direction * Math.min(galleryViewport.clientWidth * 0.78, 560),
-						behavior: reducedMotion ? "auto" : "smooth",
-					});
-					window.setTimeout(() => {
-						galleryPaused = false;
-					}, 1200);
-				};
-
-				galleryViewport.addEventListener("mouseenter", () => {
-					galleryPaused = true;
-				});
-
-				galleryViewport.addEventListener("mouseleave", () => {
-					galleryPaused = false;
-				});
-
-				galleryViewport.addEventListener("focusin", () => {
-					galleryPaused = true;
-				});
-
-				galleryViewport.addEventListener("focusout", () => {
-					galleryPaused = false;
-				});
-
-				galleryViewport.addEventListener("scroll", resetGalleryLoop, { passive: true });
-				galleryPrev?.addEventListener("click", () => scrollGallery(-1));
-				galleryNext?.addEventListener("click", () => scrollGallery(1));
-				galleryFrame = window.requestAnimationFrame(moveGallery);
-
-				window.addEventListener("beforeunload", () => window.cancelAnimationFrame(galleryFrame));
-			}
 
 			const customSelect = document.querySelector("[data-custom-select]");
 
