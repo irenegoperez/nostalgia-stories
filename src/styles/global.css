@@ -7,6 +7,7 @@
 	--olive: #7a8450;
 	--blush: #cfb4b7;
 	--pink: #f9cdd5;
+	--pink-soft: #fde8ec;
 	--ink: #2d2b24;
 	--muted: #756f66;
 	--line: rgba(111, 121, 84, 0.22);
@@ -29,6 +30,11 @@ body {
 	font-family: var(--sans);
 	font-size: 17px;
 	line-height: 1.6;
+}
+
+body::selection {
+	background: var(--pink);
+	color: var(--matcha-deep);
 }
 
 img {
@@ -68,10 +74,10 @@ textarea {
 	align-items: center;
 	justify-content: space-between;
 	gap: 24px;
-	padding: 14px 44px;
+	padding: 18px 52px;
 	border-bottom: 1px solid var(--line);
-	background: rgba(249, 243, 238, 0.9);
-	backdrop-filter: blur(16px);
+	background: rgba(249, 243, 238, 0.84);
+	backdrop-filter: blur(18px);
 }
 
 .brand-mark {
@@ -84,17 +90,18 @@ textarea {
 }
 
 .brand-mark img {
-	width: 56px;
-	height: 56px;
+	width: 58px;
+	height: 58px;
 	object-fit: cover;
 	border: 1px solid var(--line);
 	border-radius: 50%;
+	box-shadow: 0 10px 30px rgba(207, 180, 183, 0.24);
 }
 
 .site-header nav {
 	display: flex;
 	align-items: center;
-	gap: 24px;
+	gap: 30px;
 	color: var(--matcha-deep);
 	font-size: 14px;
 }
@@ -116,9 +123,9 @@ textarea {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) minmax(360px, 0.8fr);
 	align-items: center;
-	gap: 56px;
+	gap: 84px;
 	min-height: calc(100vh - 85px);
-	padding: 72px 0 48px;
+	padding: 92px 0 84px;
 }
 
 .eyebrow {
@@ -127,6 +134,7 @@ textarea {
 	font-size: 13px;
 	font-weight: 700;
 	text-transform: uppercase;
+	letter-spacing: 0.16em;
 }
 
 h1,
@@ -141,7 +149,7 @@ blockquote {
 
 h1 {
 	max-width: 720px;
-	font-size: 72px;
+	font-size: 78px;
 }
 
 h2 {
@@ -155,7 +163,7 @@ h3 {
 
 .hero-intro {
 	max-width: 640px;
-	margin-top: 24px;
+	margin-top: 28px;
 	color: var(--muted);
 	font-size: 21px;
 	line-height: 1.55;
@@ -165,7 +173,7 @@ h3 {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
-	margin-top: 32px;
+	margin-top: 38px;
 }
 
 .button {
@@ -178,6 +186,15 @@ h3 {
 	border-radius: 8px;
 	font-size: 15px;
 	font-weight: 700;
+	transition:
+		background-color 180ms ease,
+		border-color 180ms ease,
+		color 180ms ease,
+		transform 180ms ease;
+}
+
+.button:hover {
+	transform: translateY(-1px);
 }
 
 .button-primary {
@@ -186,8 +203,9 @@ h3 {
 }
 
 .button-secondary {
-	background: transparent;
-	color: var(--matcha);
+	background: rgba(249, 205, 213, 0.42);
+	border-color: rgba(207, 180, 183, 0.8);
+	color: var(--matcha-deep);
 }
 
 .hero-media {
@@ -201,8 +219,8 @@ h3 {
 	aspect-ratio: 9 / 16;
 	border: 1px solid rgba(79, 93, 57, 0.28);
 	border-radius: 34px;
-	background: #f7ede6;
-	box-shadow: 0 28px 70px rgba(79, 93, 57, 0.16);
+	background: #fff5f3;
+	box-shadow: 0 34px 90px rgba(207, 180, 183, 0.26);
 	padding: 14px;
 }
 
@@ -225,17 +243,18 @@ h3 {
 	justify-content: space-between;
 	overflow: hidden;
 	border-radius: 24px;
-	background:
-		linear-gradient(180deg, rgba(249, 205, 213, 0.6), rgba(249, 243, 238, 0.82)),
-		var(--cream);
+	background: var(--pink-soft);
 	padding: 20px;
+	position: relative;
 }
 
-.phone-screen img {
+.phone-photo {
 	width: 100%;
-	margin: auto 0;
+	height: 72%;
+	margin: 8px 0 14px;
 	border-radius: 8px;
 	object-fit: cover;
+	filter: saturate(0.92) contrast(0.96);
 }
 
 .phone-screen p {
@@ -249,11 +268,12 @@ h3 {
 	border: 1px solid rgba(79, 93, 57, 0.28);
 	border-radius: 8px;
 	padding: 6px 10px;
-	background: rgba(255, 250, 246, 0.74);
+	background: rgba(255, 250, 246, 0.84);
 	color: var(--matcha-deep);
 	font-size: 12px;
 	font-weight: 700;
 	text-transform: uppercase;
+	letter-spacing: 0.08em;
 }
 
 .soft-scene {
@@ -269,27 +289,27 @@ h3 {
 	overflow: hidden;
 	border-top: 1px solid var(--line);
 	border-bottom: 1px solid var(--line);
-	background: var(--matcha);
-	color: var(--cream);
+	background: var(--pink);
+	color: var(--matcha-deep);
 }
 
 .marquee-band div {
 	display: flex;
 	justify-content: center;
-	gap: 28px;
+	gap: 34px;
 	width: min(1120px, calc(100% - 40px));
 	margin: 0 auto;
-	padding: 18px 0;
+	padding: 22px 0;
 	font-family: var(--serif);
-	font-size: 28px;
+	font-size: 30px;
 }
 
 .intro-section,
 .inquiry-section {
 	display: grid;
 	grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.7fr);
-	gap: 56px;
-	padding: 96px 0;
+	gap: 72px;
+	padding: 130px 0;
 }
 
 .intro-copy p,
@@ -325,7 +345,7 @@ h3 {
 .portfolio-strip {
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
-	gap: 12px;
+	gap: 16px;
 	width: min(1180px, calc(100% - 40px));
 	margin: 0 auto;
 }
@@ -333,50 +353,29 @@ h3 {
 .reel-card {
 	display: flex;
 	align-items: end;
-	min-height: 380px;
+	min-height: 440px;
 	overflow: hidden;
 	border: 1px solid rgba(79, 93, 57, 0.18);
 	border-radius: 8px;
-	padding: 18px;
+	padding: 22px;
 	background:
-		linear-gradient(180deg, transparent 34%, rgba(45, 43, 36, 0.68)),
+		linear-gradient(180deg, rgba(45, 43, 36, 0.02) 18%, rgba(45, 43, 36, 0.64)),
+		var(--reel-image) center / cover,
 		var(--paper-deep);
+	filter: saturate(0.94);
 }
 
 .reel-card span {
 	color: var(--cream);
 	font-size: 15px;
 	font-weight: 700;
-}
-
-.reel-card-1 {
-	background:
-		linear-gradient(180deg, transparent 34%, rgba(45, 43, 36, 0.68)),
-		linear-gradient(135deg, #f9cdd5, #7a8450);
-}
-
-.reel-card-2 {
-	background:
-		linear-gradient(180deg, transparent 34%, rgba(45, 43, 36, 0.68)),
-		linear-gradient(135deg, #f9f3ee, #cfb4b7);
-}
-
-.reel-card-3 {
-	background:
-		linear-gradient(180deg, transparent 34%, rgba(45, 43, 36, 0.68)),
-		linear-gradient(135deg, #6f7954, #2d2b24);
-}
-
-.reel-card-4 {
-	background:
-		linear-gradient(180deg, transparent 34%, rgba(45, 43, 36, 0.68)),
-		linear-gradient(135deg, #cfb4b7, #4f5d39);
+	text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 }
 
 .services-section,
 .process-section,
 .faq-section {
-	padding: 110px 0 0;
+	padding: 136px 0 0;
 }
 
 .section-heading {
@@ -390,7 +389,7 @@ h3 {
 .service-grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 14px;
+	gap: 18px;
 }
 
 .service-grid article,
@@ -399,13 +398,13 @@ details,
 .inquiry-form {
 	border: 1px solid var(--line);
 	border-radius: 8px;
-	background: rgba(255, 250, 246, 0.7);
-	box-shadow: 0 18px 50px rgba(79, 93, 57, 0.08);
+	background: rgba(255, 250, 246, 0.76);
+	box-shadow: 0 18px 50px rgba(207, 180, 183, 0.1);
 }
 
 .service-grid article {
-	min-height: 260px;
-	padding: 28px;
+	min-height: 290px;
+	padding: 36px;
 }
 
 .service-grid p,
@@ -421,17 +420,17 @@ details p {
 .process-grid {
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
-	gap: 14px;
+	gap: 18px;
 }
 
 .process-grid article {
-	min-height: 280px;
-	padding: 24px;
+	min-height: 300px;
+	padding: 30px;
 }
 
 .process-grid span {
 	display: block;
-	margin-bottom: 42px;
+	margin-bottom: 56px;
 	color: var(--blush);
 	font-family: var(--serif);
 	font-size: 48px;
@@ -444,23 +443,109 @@ details p {
 }
 
 .testimonial-section {
-	padding: 120px 0 20px;
+	padding: 150px 0 44px;
 	text-align: center;
 }
 
 .testimonial-section blockquote {
 	max-width: 920px;
 	margin: 0 auto;
-	font-size: 48px;
+	font-size: 54px;
+}
+
+.instagram-section {
+	margin-top: 110px;
+	padding: 112px 0;
+	background:
+		linear-gradient(90deg, rgba(111, 121, 84, 0.08) 1px, transparent 1px),
+		var(--pink-soft);
+	background-size: 96px 100%;
+}
+
+.instagram-inner {
+	display: grid;
+	grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1fr);
+	align-items: center;
+	gap: 62px;
+}
+
+.instagram-copy p {
+	margin-top: 22px;
+	color: var(--muted);
+	font-size: 18px;
+}
+
+.instagram-copy .button {
+	margin-top: 34px;
+}
+
+.instagram-grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.instagram-card {
+	position: relative;
+	display: flex;
+	min-height: 360px;
+	align-items: end;
+	overflow: hidden;
+	border: 1px solid rgba(111, 121, 84, 0.2);
+	border-radius: 8px;
+	background: var(--cream);
+}
+
+.instagram-card:nth-child(even) {
+	margin-top: 38px;
+}
+
+.instagram-card img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: saturate(0.9) contrast(0.94);
+}
+
+.instagram-card::after {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, transparent 26%, rgba(45, 43, 36, 0.68));
+	content: "";
+}
+
+.instagram-card div {
+	position: relative;
+	z-index: 1;
+	padding: 18px;
+	color: var(--cream);
+}
+
+.instagram-card span {
+	font-size: 12px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+}
+
+.instagram-card h3 {
+	margin-top: 8px;
+	color: var(--cream);
+	font-family: var(--sans);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.35;
 }
 
 .faq-list {
 	display: grid;
-	gap: 10px;
+	gap: 12px;
 }
 
 details {
-	padding: 22px 24px;
+	padding: 26px 28px;
 }
 
 summary {
@@ -475,7 +560,7 @@ details p {
 
 .inquiry-section {
 	align-items: start;
-	padding: 110px 0;
+	padding: 150px 0;
 }
 
 .inquiry-copy {
@@ -489,14 +574,14 @@ details p {
 
 .inquiry-form {
 	display: grid;
-	gap: 28px;
-	padding: 32px;
+	gap: 32px;
+	padding: 38px;
 }
 
 .form-grid {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 18px;
+	gap: 20px;
 }
 
 .field-wide {
@@ -504,6 +589,7 @@ details p {
 }
 
 .inquiry-form label,
+.form-field,
 .inquiry-form fieldset {
 	display: grid;
 	gap: 8px;
@@ -515,11 +601,12 @@ details p {
 
 .inquiry-form input,
 .inquiry-form select,
-.inquiry-form textarea {
+.inquiry-form textarea,
+.custom-select-trigger {
 	width: 100%;
 	border: 1px solid rgba(111, 121, 84, 0.28);
 	border-radius: 8px;
-	background: rgba(249, 243, 238, 0.72);
+	background: rgba(249, 243, 238, 0.86);
 	color: var(--ink);
 	padding: 13px 14px;
 	outline: none;
@@ -527,7 +614,8 @@ details p {
 
 .inquiry-form input:focus,
 .inquiry-form select:focus,
-.inquiry-form textarea:focus {
+.inquiry-form textarea:focus,
+.custom-select-trigger:focus {
 	border-color: var(--matcha);
 	box-shadow: 0 0 0 3px rgba(111, 121, 84, 0.12);
 }
@@ -536,11 +624,102 @@ details p {
 	resize: vertical;
 }
 
+.custom-select {
+	position: relative;
+}
+
+.custom-select-trigger {
+	display: flex;
+	min-height: 52px;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	cursor: pointer;
+	text-align: left;
+}
+
+.custom-select-trigger span:last-child {
+	color: var(--blush);
+	font-family: var(--serif);
+	font-size: 28px;
+	line-height: 1;
+	transition: transform 180ms ease;
+}
+
+.custom-select.has-value .custom-select-trigger {
+	color: var(--matcha-deep);
+}
+
+.custom-select.is-open .custom-select-trigger span:last-child {
+	transform: rotate(45deg);
+}
+
+.custom-select-menu {
+	position: absolute;
+	top: calc(100% + 8px);
+	right: 0;
+	left: 0;
+	z-index: 10;
+	display: grid;
+	gap: 4px;
+	max-height: 280px;
+	overflow: auto;
+	border: 1px solid rgba(207, 180, 183, 0.7);
+	border-radius: 8px;
+	background: #fff9f7;
+	box-shadow: 0 22px 50px rgba(79, 93, 57, 0.16);
+	padding: 8px;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(-4px);
+	transition:
+		opacity 160ms ease,
+		transform 160ms ease;
+}
+
+.custom-select.is-open .custom-select-menu {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateY(0);
+}
+
+.custom-select-menu button {
+	border: 0;
+	border-radius: 8px;
+	background: transparent;
+	color: var(--matcha-deep);
+	cursor: pointer;
+	padding: 12px;
+	text-align: left;
+}
+
+.custom-select-menu button:hover,
+.custom-select-menu button[aria-selected="true"] {
+	background: var(--pink-soft);
+}
+
+.field-error {
+	display: none;
+	margin-top: 8px;
+	color: #9a5a65;
+	font-size: 13px;
+}
+
+.custom-select.is-invalid .custom-select-trigger {
+	border-color: #bd7885;
+	box-shadow: 0 0 0 3px rgba(249, 205, 213, 0.8);
+}
+
+.custom-select.is-invalid .field-error {
+	display: block;
+}
+
 .inquiry-form fieldset {
 	grid-template-columns: repeat(2, minmax(0, 1fr));
-	border: 1px solid rgba(111, 121, 84, 0.2);
+	border: 1px solid rgba(207, 180, 183, 0.54);
 	border-radius: 8px;
-	padding: 20px;
+	background: rgba(249, 205, 213, 0.16);
+	padding: 24px;
 }
 
 .inquiry-form legend {
@@ -629,6 +808,18 @@ details p {
 	.service-grid,
 	.process-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.instagram-inner {
+		grid-template-columns: 1fr;
+	}
+
+	.instagram-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.instagram-card:nth-child(even) {
+		margin-top: 0;
 	}
 
 	.portfolio-strip {
@@ -721,13 +912,28 @@ details p {
 	.service-grid,
 	.process-grid,
 	.portfolio-strip,
+	.instagram-grid,
 	.form-grid,
 	.inquiry-form fieldset {
 		grid-template-columns: 1fr;
 	}
 
 	.reel-card {
-		min-height: 280px;
+		min-height: 340px;
+	}
+
+	.instagram-section {
+		margin-top: 72px;
+		padding: 74px 0;
+		background-size: 64px 100%;
+	}
+
+	.instagram-inner {
+		gap: 34px;
+	}
+
+	.instagram-card {
+		min-height: 340px;
 	}
 
 	.inquiry-copy {

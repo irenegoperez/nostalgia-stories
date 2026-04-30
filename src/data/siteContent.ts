@@ -2,7 +2,8 @@ export const brand = {
 	name: "Nostalgia Stories",
 	tagline: "Content Creator Agency",
 	email: "hello@nostalgiastories.co",
-	instagramUrl: "https://www.instagram.com/",
+	instagramHandle: "@nostalgiastories.co",
+	instagramUrl: "https://www.instagram.com/nostalgiastories.co/",
 	tiktokUrl: "https://www.tiktok.com/",
 	location: "Cabo, Mexico and beyond",
 };
@@ -32,6 +33,36 @@ export const audiences = [
 	"Brand Moments",
 ];
 
+export const visuals = {
+	heroPhone:
+		"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80",
+	heroMini:
+		"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+};
+
+export const portfolioPreview = [
+	{
+		label: "Ceremony Details",
+		image:
+			"https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80",
+	},
+	{
+		label: "Dinner Atmosphere",
+		image:
+			"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80",
+	},
+	{
+		label: "Dance Floor Energy",
+		image:
+			"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
+	},
+	{
+		label: "Destination Moments",
+		image:
+			"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80",
+	},
+];
+
 export const services = [
 	{
 		title: "Event Content",
@@ -56,6 +87,50 @@ export const inquiry = {
 	intro:
 		"Share the details you already know and the feeling you want the content to carry. Once your inquiry is received, we will review the vision and send the best-fit coverage options privately.",
 	responseTime: "You can expect a response within 48 hours.",
+};
+
+export const eventTypes = [
+	"Private event",
+	"Wedding",
+	"Quinceanera",
+	"DJ event",
+	"Restaurant or venue",
+	"Brand or social event",
+	"Other",
+];
+
+export const instagramShowcase = {
+	eyebrow: "Social stories",
+	title: "More moments live on Instagram.",
+	intro:
+		"Follow along for event recaps, behind-the-scenes clips, venue details, drone fillers, and the small moments that make each story feel personal.",
+	cta: "Follow on Instagram",
+	items: [
+		{
+			label: "Reels",
+			title: "Ready-to-post edits",
+			image:
+				"https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80",
+		},
+		{
+			label: "Details",
+			title: "Tables, textures, florals",
+			image:
+				"https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=700&q=80",
+		},
+		{
+			label: "Energy",
+			title: "The room in motion",
+			image:
+				"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=700&q=80",
+		},
+		{
+			label: "Venue",
+			title: "Atmosphere clips",
+			image:
+				"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80",
+		},
+	],
 };
 
 export const processSteps = [

@@ -4,12 +4,16 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 import {
 	audiences,
 	brand,
+	eventTypes,
 	faqs,
 	hero,
 	highlights,
 	inquiry,
+	instagramShowcase,
+	portfolioPreview,
 	processSteps,
 	services,
+	visuals,
 } from "../data/siteContent";
 ---
 
@@ -47,15 +51,15 @@ import {
 					<div class="phone-frame phone-frame-main">
 						<div class="phone-screen">
 							<span class="clip-label">4K vertical</span>
-							<img src="/assets/nostalgia-stories-logo.jpeg" alt="" />
-							<p>Private events, celebrations, venues, and brand moments.</p>
+							<img class="phone-photo" src={visuals.heroPhone} alt="" />
+							<p>Social-ready stories with a soft, cinematic eye.</p>
 						</div>
 					</div>
 					<div class="phone-frame phone-frame-small" aria-hidden="true">
 						<div class="phone-screen">
 							<span class="clip-label">Drone filler</span>
-							<div class="soft-scene"></div>
-							<p>Cinematic openers and atmosphere clips.</p>
+							<img class="phone-photo" src={visuals.heroMini} alt="" />
+							<p>Details, atmosphere, and motion between the big moments.</p>
 						</div>
 					</div>
 				</div>
@@ -85,18 +89,11 @@ import {
 			</section>
 
 			<section class="portfolio-strip" aria-label="Portfolio preview">
-				<div class="reel-card reel-card-1">
-					<span>Getting ready</span>
-				</div>
-				<div class="reel-card reel-card-2">
-					<span>Venue details</span>
-				</div>
-				<div class="reel-card reel-card-3">
-					<span>Dance floor</span>
-				</div>
-				<div class="reel-card reel-card-4">
-					<span>Drone openers</span>
-				</div>
+				{portfolioPreview.map((item) => (
+					<div class="reel-card" style={`--reel-image: url("${item.image}")`}>
+						<span>{item.label}</span>
+					</div>
+				))}
 			</section>
 
 			<section id="services" class="services-section section-shell">
@@ -136,6 +133,28 @@ import {
 					"We focus on the moments people feel but do not always see - the movement, the
 					atmosphere, the details, and the story already unfolding in the room."
 				</blockquote>
+			</section>
+
+			<section class="instagram-section">
+				<div class="instagram-inner section-shell">
+					<div class="instagram-copy">
+						<p class="eyebrow">{instagramShowcase.eyebrow}</p>
+						<h2>{instagramShowcase.title}</h2>
+						<p>{instagramShowcase.intro}</p>
+						<a class="button button-secondary" href={brand.instagramUrl}>{instagramShowcase.cta}</a>
+					</div>
+					<div class="instagram-grid" aria-label={`${brand.instagramHandle} preview`}>
+						{instagramShowcase.items.map((item) => (
+							<article class="instagram-card">
+								<img src={item.image} alt="" />
+								<div>
+									<span>{item.label}</span>
+									<h3>{item.title}</h3>
+								</div>
+							</article>
+						))}
+					</div>
+				</div>
 			</section>
 
 			<section id="faq" class="faq-section section-shell">
@@ -179,19 +198,24 @@ import {
 							<span>Instagram or TikTok handle</span>
 							<input name="social" type="text" placeholder="@nostalgiastories" />
 						</label>
-						<label>
+						<div class="form-field">
 							<span>Event type</span>
-							<select name="eventType" required>
-								<option value="">Select one</option>
-								<option>Private event</option>
-								<option>Wedding</option>
-								<option>Quinceanera</option>
-								<option>DJ event</option>
-								<option>Restaurant or venue</option>
-								<option>Brand or social event</option>
-								<option>Other</option>
-							</select>
-						</label>
+							<div class="custom-select" data-custom-select>
+								<button class="custom-select-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+									<span data-custom-select-label>Select one</span>
+									<span aria-hidden="true">+</span>
+								</button>
+								<input data-custom-select-input name="eventType" type="hidden" />
+								<div class="custom-select-menu" role="listbox" aria-label="Event type">
+									{eventTypes.map((eventType) => (
+										<button type="button" role="option" data-value={eventType} aria-selected="false">
+											{eventType}
+										</button>
+									))}
+								</div>
+								<p class="field-error">Please choose an event type.</p>
+							</div>
+						</div>
 						<label>
 							<span>Event date</span>
 							<input name="eventDate" type="date" />
@@ -248,6 +272,59 @@ import {
 			<p>Copyright 2026</p>
 		</footer>
 		<script>
+			const customSelect = document.querySelector("[data-custom-select]");
+
+			if (customSelect instanceof HTMLElement) {
+				const trigger = customSelect.querySelector(".custom-select-trigger");
+				const label = customSelect.querySelector("[data-custom-select-label]");
+				const input = customSelect.querySelector("[data-custom-select-input]");
+				const options = customSelect.querySelectorAll("[data-value]");
+
+				const closeSelect = () => {
+					customSelect.classList.remove("is-open");
+					trigger?.setAttribute("aria-expanded", "false");
+				};
+
+				trigger?.addEventListener("click", () => {
+					const isOpen = customSelect.classList.toggle("is-open");
+					trigger.setAttribute("aria-expanded", String(isOpen));
+				});
+
+				options.forEach((option) => {
+					option.addEventListener("click", () => {
+						const value = option.getAttribute("data-value") || "";
+
+						if (input instanceof HTMLInputElement) {
+							input.value = value;
+						}
+
+						if (label) {
+							label.textContent = value;
+						}
+
+						options.forEach((item) => item.setAttribute("aria-selected", "false"));
+						option.setAttribute("aria-selected", "true");
+						customSelect.classList.add("has-value");
+						customSelect.classList.remove("is-invalid");
+						closeSelect();
+					});
+				});
+
+				document.addEventListener("click", (event) => {
+					const target = event.target;
+
+					if (!(target instanceof Node) || !customSelect.contains(target)) {
+						closeSelect();
+					}
+				});
+
+				document.addEventListener("keydown", (event) => {
+					if (event.key === "Escape") {
+						closeSelect();
+					}
+				});
+			}
+
 			const inquiryForm = document.querySelector("[data-inquiry-form]");
 
 			if (inquiryForm instanceof HTMLFormElement) {
@@ -255,6 +332,14 @@ import {
 					event.preventDefault();
 
 					const data = new FormData(inquiryForm);
+					const eventType = data.get("eventType") || "";
+
+					if (!eventType && customSelect instanceof HTMLElement) {
+						customSelect.classList.add("is-invalid");
+						customSelect.scrollIntoView({ behavior: "smooth", block: "center" });
+						return;
+					}
+
 					const contentNeeds = data.getAll("contentNeeds").join(", ") || "Not selected";
 					const recipient = inquiryForm.dataset.inquiryEmail || "hello@nostalgiastories.co";
 					const lines = [
@@ -264,7 +349,7 @@ import {
 						`Email: ${data.get("email") || ""}`,
 						`Phone or WhatsApp: ${data.get("phone") || ""}`,
 						`Instagram or TikTok: ${data.get("social") || ""}`,
-						`Event type: ${data.get("eventType") || ""}`,
+						`Event type: ${eventType}`,
 						`Event date: ${data.get("eventDate") || ""}`,
 						`Location or venue: ${data.get("location") || ""}`,
 						`Content needs: ${contentNeeds}`,
